@@ -10,9 +10,13 @@ class Imobiliaria:
         return self.__imoveis
 
     def incluir_imovel(self, imovel: Imovel):
-        # Nao esqueca de garantir que o objeto recebido pertence a classe Imovel...
-        # Nao permitir insercao de Imoveis duplicados!
-        ...
+        if isinstance(imovel, Imovel) and imovel not in self.__imoveis:
+            self.__imoveis.append(imovel)
+        else:
+            print("Seu tanso!")
 
     def excluir_imovel(self, imovel: Imovel):
-       ...
+       if imovel in self.__imoveis:
+           self.__imoveis.pop(self.__imoveis.index(imovel))
+       else:
+           print("Seu tanso!")

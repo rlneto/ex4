@@ -4,8 +4,10 @@ from Mobilia import Mobilia
 
 class Imovel:
     def __init__(self, codigo: int, descricao: str, valor: float, locador: Locador):
-        # Criar todos os atributos, incluindo as listas
-        ...
+        self.__codigo = codigo
+        self.__descricao = descricao
+        self.__valor = valor
+        self.__locador = locador
 
     @property
     def codigo(self):
@@ -15,12 +17,32 @@ class Imovel:
     def codigo(self, codigo: int):
         self.__codigo = codigo
 
-    ... Adicionar demais getters
-    
-    ... Adicionar demais setters
-    
+    @property
+    def descricao(self):
+        return self.__descricao
+
+    @descricao.setter
+    def descricao(self, nuevo: str):
+        self.__descricao = nuevo
+
+    @property
+    def valor(self):
+        return self.__valor
+
+    @valor.setter
+    def valor(self, nuevo: float):
+        self.__valor = nuevo
+
+    @property
+    def locador(self):
+        return self.__locador
+
+    @locador.setter
+    def locador(self, locador: Locador):
+        self.__locador = locador
 
     def incluir_locatario(self, locatario: Locatario):
+
         # Nao esqueca de garantir que o objeto recebido pertence a classe Locatario...
         # Nao permitir insercao de Locatarios duplicados!
         ...
