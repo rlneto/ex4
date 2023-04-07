@@ -3,11 +3,13 @@ from Locador import Locador
 from Mobilia import Mobilia
 
 class Imovel:
-    def __init__(self, codigo: int, descricao: str, valor: float, locador: Locador):
+    def __init__(self, codigo: int, descricao: str, valor: float, locador: Locador ):
         self.__codigo = codigo
         self.__descricao = descricao
         self.__valor = valor
         self.__locador = locador
+        self.__locatarios = list()
+        self.__mobilias = list()
 
     @property
     def codigo(self):
@@ -41,22 +43,35 @@ class Imovel:
     def locador(self, locador: Locador):
         self.__locador = locador
 
+    @property
+    def locatarios(self):
+        return self.__locatarios
+
+    @property
+    def mobilias(self):
+        return self.__mobilias
+
     def incluir_locatario(self, locatario: Locatario):
-
-        # Nao esqueca de garantir que o objeto recebido pertence a classe Locatario...
-        # Nao permitir insercao de Locatarios duplicados!
-        ...
-
+        if isinstance(locatario, Locatario) and locatario not in self.locatarios:
+            self.__locatarios.append(locatario)
+        else:
+            print("Seu tanso!")
     def excluir_locatario(self, codigo_locatario: int):
-        ...
+        for tanso in self.locatarios:
+            if tanso.codigo == codigo_locatario:
+                self.__locatarios.pop(self.__locatarios.index(tanso))
+                break
 
     def incluir_mobilia(self, codigo_mobilia: int, descricao_mobilia: str):
-        ... Nao permitir insercao de Mobilias duplicadas!
+        self.__mobilias.append(Mobilia(codigo_mobilia, descricao_mobilia))
 
     def excluir_mobilia(self, codigo_mobilia: int):
-        ...
+        for mobilia in self.mobilias:
+            if mobilia.codigo == codigo_mobilia:
+                self.__mobilias.pop(self.__mobilias.index(mobilia))
+                break
 
     def find_locatario_by_codigo(self, codigo_locatario: int):
-        # Procura na lista de locatarios se existe um Locatario com este codigo 
-        # Se encontrar, retorna o Locatario encontrado
-        ...
+        for tanso in self.locatarios:
+            if tanso.codigo == codigo_locatario:
+                return tanso
